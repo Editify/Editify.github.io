@@ -1,6 +1,7 @@
 ---
 title: Getting Started
 description: A Quick Start guide.
+order: 1
 ---
 
 Guides lead a user through a specific task they want to accomplish, often with a sequence of steps.

@@ -1,32 +1,59 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightBlog from 'starlight-blog';
 
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Editify Docs',
+			plugins: [
+				starlightBlog({
+					title: 'Editify Posts',
+					authors: {
+						adam: {
+							name: 'Adam M.',
+							title: 'Web Maintainer',
+							picture: '/authors/adam.jpg',
+							url: 'https://github.com/adammatthiesen'
+						},
+					},
+				}),
+			],
+			components: {
+				ThemeSelect: './src/components/ThemeSelect.astro',
+			},
 			social: {
-				github: 'https://github.com/withastro/starlight',
+				github: 'https://github.com/Editify',
+			},
+			editLink: {
+				baseUrl: 'https://github.com/Editify/Website/edit/main'
 			},
 			sidebar: [
 				{
-					label: "Start Here",
+					label: 'Our Resources',
 					items: [
-						{ 
-							label: 'Getting Started', 
-							link: '/starthere/gettingstarted'
+						{
+							label: 'The Blog',
+							link: '/blog',
+						},
+						{
+							label: 'The Downloads',
+							link: '/downloads',
+							badge: {
+								text: 'Coming Soon',
+								variant: 'caution',
+							}
 						},
 					],
 				},
 				{
-					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ 
-							label: 'Example Guide', 
-							link: '/guides/example/' },
-					],
+					label: "Usage Guide",
+					autogenerate: { directory: 'guide' },
+				},
+				{
+					label: 'Extensions',
+					autogenerate: { directory: 'extensions' },
 				},
 				{
 					label: 'Reference',
